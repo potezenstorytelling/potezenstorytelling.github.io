@@ -307,6 +307,64 @@
   .cta-section h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 16px; }
   .cta-section p { font-size: 1.05rem; color: var(--text-muted); font-style: italic; max-width: 520px; margin: 0 auto 40px; line-height: 1.8; }
 
+    /* ===== NESLOKE LITE SIGNUP SECTION ===== */
+  .lite-section {
+    background: radial-gradient(ellipse at 50% 50%, rgba(57,255,20,0.06) 0%, transparent 70%);
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .lite-inner { max-width: 680px; margin: 0 auto; }
+  .lite-section h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 16px; }
+  .lite-lead { font-size: 1.05rem; color: var(--text); line-height: 1.9; margin: 0 auto 12px; max-width: 600px; }
+  .lite-what {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 36px;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 20px 28px;
+    text-align: left;
+  }
+  .lite-what strong { color: var(--gold-light); font-family: "Cinzel", serif; font-size: 13px; letter-spacing: 0.06em; display: block; margin-bottom: 10px; text-align: center; }
+  .lite-what ul { list-style: none; }
+  .lite-what li { padding-left: 20px; position: relative; margin-bottom: 6px; }
+  .lite-what li::before { content: "\25C6"; position: absolute; left: 0; color: var(--neon); font-size: 10px; top: 4px; }
+  .lite-btn {
+    display: inline-block;
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    color: var(--dark);
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .lite-btn:hover { background: var(--gold-light); box-shadow: 0 0 30px rgba(201,168,76,0.35); }
+  .lite-form-wrap {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+    margin-top: 0;
+  }
+  .lite-form-wrap.open { max-height: 600px; opacity: 1; margin-top: 32px; }
+  .lite-form-frame {
+    background: var(--dark-card);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 28px 24px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .lite-form-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; font-style: italic; }
   /* FOOTER */
   footer { background: var(--dark); border-top: 1px solid rgba(201,168,76,0.1); padding: 32px 48px; text-align: center; }
   footer p { font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em; }
@@ -354,6 +412,9 @@
     <p class="hero-sub">Years before a single rule was written, the World of Nesloke already had nations with real histories, factions with real conflicts, and a magic system with real rules.</p>
     <p class="hero-intent">The Nesloke TTRPG is coming to Kickstarter in Fall 2026. Read about the game below, then head to the Kickstarter page to follow the campaign and get notified the moment it goes live.</p>
     <a href="https://www.kickstarter.com/projects/kevtyler/nesloke-ttrpg" target="_blank" class="ks-btn-hero">Follow on Kickstarter &mdash; Get Notified at Launch</a>
+    <div style="margin-top:24px;">
+      <a href="#nesloke-lite" class="lite-btn">Play It Free &mdash; Get Nesloke Lite</a>
+    </div>
   </div>
 </section>
 
@@ -599,6 +660,30 @@
   </div>
 </section>
 
+<!-- ===== NESLOKE LITE SIGNUP ===== -->
+<section class="lite-section" id="nesloke-lite">
+  <div class="lite-inner">
+    <span class="section-eyebrow">Play It Free</span>
+    <h2>Get Nesloke Lite</h2>
+    <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+    <p class="lite-lead">Nesloke Lite is a complete, playable slice of the game. Everything a group needs to make characters and play through the first three levels, set in a full mini-campaign in the land of Giljair.</p>
+    <div class="lite-what">
+      <strong>What's Inside</strong>
+      <ul>
+        <li>A Player's Guide: the core system, combat, five archetypes, and character creation</li>
+        <li>A GM's Guide: everything to run the game, including the mini-campaign</li>
+        <li>A print-ready character sheet</li>
+      </ul>
+    </div>
+    <button class="lite-btn" id="lite-reveal">Send Me Nesloke Lite</button>
+    <div class="lite-form-wrap" id="lite-form-wrap">
+      <div class="lite-form-frame">
+        <script async data-uid="a9d190e039" src="https://potezen-storytelling.kit.com/a9d190e039/index.js"></script>
+      </div>
+      <p class="lite-form-note">Enter your email and the game is yours. You'll be taken straight to the download page.</p>
+    </div>
+  </div>
+</section>
 <!-- CLOSING CTA -->
 <section class="cta-section">
   <h2>Ready to Step Into Nesloke?</h2>
@@ -632,6 +717,12 @@ window.addEventListener("load", function() {
     `;
     container.appendChild(p);
   }
+});
+// Reveal the Kit form when the button is clicked
+document.getElementById("lite-reveal").addEventListener("click", function() {
+  var wrap = document.getElementById("lite-form-wrap");
+  wrap.classList.add("open");
+  this.style.display = "none";
 });
 </script>
 
